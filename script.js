@@ -5,11 +5,10 @@ document.addEventListener('DOMContentLoaded', function() {
     let emailList = document.getElementById('email-list');
     let inviterEmail = document.getElementById('email1');
     let inviteMails = [];
-    let userDataArray = JSON.parse(localStorage.getItem('userDataArray')) || [];
+    let localMemory = JSON.parse(localStorage.getItem('localMemory')) || [];
 
     const emailRegex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
     const phoneRegex = /^[0-9]{10}$/;
-
 
     function validateEmail(email) {
         if (!emailRegex.test(email)) {
@@ -19,7 +18,6 @@ document.addEventListener('DOMContentLoaded', function() {
         return true;
     }
 
-   
     function validatePhone(phone) {
         if (!phoneRegex.test(phone)) {
             alert('Please enter a valid 10-digit phone number.');
@@ -28,7 +26,6 @@ document.addEventListener('DOMContentLoaded', function() {
         return true;
     }
 
-   
     if (subBtn) {
         subBtn.addEventListener('click', function(event) {
             event.preventDefault();
@@ -39,7 +36,6 @@ document.addEventListener('DOMContentLoaded', function() {
             if (!validateEmail(userEmail)) return;
             if (!validatePhone(userPhone)) return;
 
-            
             if (inviterEmail.value !== "" && validateEmail(inviterEmail.value)) {
                 inviteMails.push(inviterEmail.value);
             }
@@ -52,7 +48,7 @@ document.addEventListener('DOMContentLoaded', function() {
             let country = document.getElementById('country').value;
             let phoneNumber = document.getElementById('number').value;
 
-            let invite = inviteMails.join(","); 
+            let invite = inviteMails.join(",");
 
             let userData = {
                 userName: userName,
@@ -66,49 +62,50 @@ document.addEventListener('DOMContentLoaded', function() {
                 inviterEmail: invite
             };
 
-           
-            userDataArray.push(userData);
-            localStorage.setItem('userDataArray', JSON.stringify(userDataArray));
-
-           
+            localMemory.push(userData);
+            console.log(userData);
+            
+            localStorage.setItem('localMemory', JSON.stringify(localMemory));
+            
+            
             inviteMails = [];
             emailList.innerHTML = ''; 
             form.reset();
 
             alert('User data has been added to the array and saved to local storage');
-            userData();
+            // userData();
         });
     }
 
     if (inviteBtn) {
         inviteBtn.addEventListener('click', function(event) {
-            event.preventDefault();  
-    
+            event.preventDefault();
+
             let email = inviterEmail.value;
-    
+
             if (email !== '') {
                 if (!validateEmail(email)) return;
-    
+
                 if (inviteMails.find(existingEmail => existingEmail === email)) {
                     alert('This email has already been invited.');
                     return;
                 }
-    
+
                 let li = document.createElement('li');
                 li.className = 'list';
                 li.textContent = email;
-    
+
                 let remove = document.createElement('i');
                 remove.className = 'fa-solid fa-trash remove-icon';
                 li.appendChild(remove);
                 emailList.appendChild(li);
-    
+
                 inviteMails.push(email);
-    
+
                 inviterEmail.value = '';  
-    
+
                 remove.addEventListener('click', () => {
-                    li.remove(); 
+                    li.remove();
                     inviteMails = inviteMails.filter(invite => invite !== email); 
                 });
             } else {
@@ -116,23 +113,18 @@ document.addEventListener('DOMContentLoaded', function() {
             }
         });
     }
-    
 
-    
     function userData() {
         let tableBody = document.getElementById('table-body');
         if (!tableBody) {
-            console.error('table-body element not found');
             return;
         }
 
         tableBody.innerHTML = '';  
 
-       
-        userDataArray.forEach((user, index) => {
+        localMemory.forEach((user, index) => {
             let row = document.createElement('tr');
 
-            
             let userName = document.createElement('td');
             userName.textContent = user.userName;
             row.appendChild(userName);
@@ -153,24 +145,21 @@ document.addEventListener('DOMContentLoaded', function() {
             inviters.textContent = user.inviterEmail;
             row.appendChild(inviters);
 
-            
             let deleteBtn = document.createElement('td');
             let icon = document.createElement('i');
             icon.className = 'fa-solid fa-trash remove-icon'; 
             icon.addEventListener('click', () => {
-                row.remove(); 
-                userDataArray.splice(index, 1);  
-                localStorage.setItem('userDataArray', JSON.stringify(userDataArray));  
+                row.remove();
+                localMemory.splice(index, 1);
+                localStorage.setItem('localMemory', JSON.stringify(localMemory));  
             });
 
             deleteBtn.appendChild(icon); 
-            row.appendChild(deleteBtn);  
+            row.appendChild(deleteBtn);
 
-            
-            tableBody.appendChild(row);  
+            tableBody.appendChild(row);
         });
     }
 
-    userData(); 
+    userData();
 });
-
