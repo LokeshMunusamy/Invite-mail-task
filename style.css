@@ -1,0 +1,168 @@
+/* Global Styles */
+body {
+    font-family: 'Arial', sans-serif;
+    background-color: #f9f9f9;
+    margin: 0;
+    padding: 0;
+}
+.title{
+    text-align: center;
+    margin-bottom: 0;
+}
+.container{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+form {
+    background-color: white;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    width: 100%;
+    max-width: 50%;
+    margin: 2rem;
+}
+
+
+h2 {
+    text-align: center;
+    color: #333;
+    margin-bottom: 20px;
+}
+
+
+label {
+    font-size: 14px;
+    font-weight: bold;
+    margin-bottom: 5px;
+    display: block;
+    color: #555;
+}
+
+input[type="text"],
+input[type="email"],
+input[type="number"],
+input[type="password"],
+input[type="date"],
+select,
+button {
+    width: 100%;
+    padding: 10px;
+    margin: 8px 0;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    font-size: 14px;
+    background-color: #f9f9f9;
+    box-sizing: border-box;
+}
+
+input[type="text"]:focus,
+input[type="email"]:focus,
+input[type="number"]:focus,
+input[type="password"]:focus,
+input[type="date"]:focus,
+select:focus {
+    border-color: #4CAF50;
+    outline: none;
+    background-color: white;
+}
+
+
+input[type="number"]::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+}
+
+.invite {
+    display: flex;
+    justify-content: space-between;
+
+}
+.invite  input{
+    width: 70%;
+}
+.invite button{
+ width: 20%;
+}
+
+button {
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    padding: 10px 15px;
+    cursor: pointer;
+    font-size: 14px;
+    margin-top: 10px;
+    transition: background-color 0.3s ease;
+}
+
+button:hover {
+    background-color: #45a049;
+}
+
+button[type="button"] {
+    background-color: #f1f1f1;
+    color: #333;
+    border: 1px solid #ddd;
+    font-size: 12px;
+}
+
+button[type="button"]:hover {
+    background-color: #ddd;
+}
+
+.remove-icon{
+    cursor: pointer;
+}
+.remove-icon:hover{
+    color: red;
+}
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 1.5rem;
+}
+
+table, th, td {
+    border: 1px solid #ddd;
+}
+
+th, td {
+    padding: 12px;
+    font-size: 14px;
+    /* text-align: center;  */
+}
+
+th {
+    background-color: #4CAF50;
+    color: white;
+}
+
+td {
+    background-color: #f9f9f9;
+}
+
+#table-body {
+    text-align: center; 
+}
+
+
+#email-list{
+    list-style: none;
+    padding: 0;
+}
+.list{
+    display: flex;
+    justify-content: space-between;
+    padding: .5rem;
+    margin: .3rem 0px;
+    border: 1px solid black;
+}
+.navigate{
+    text-decoration: none;
+    display: block;
+    text-align: center;
+    margin: 2rem;
+} 
