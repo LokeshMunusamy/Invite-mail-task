@@ -4,10 +4,11 @@ document.addEventListener('DOMContentLoaded', function() {
     let inviteBtn = document.getElementById('add-inviter');
     let emailList = document.getElementById('email-list');
     let inviterEmail = document.getElementById('email1');
+
     let inviteMails = [];
     let localMemory = JSON.parse(localStorage.getItem('localMemory')) || [];
 
-    const emailRegex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
+    const emailRegex = /^[a-zA-Z0-9]+@[a-zA-Z]+\.[a-zA-Z]{2,}$/;
     const phoneRegex = /^[0-9]{10}$/;
 
     function validateEmail(email) {
@@ -28,7 +29,6 @@ document.addEventListener('DOMContentLoaded', function() {
 
     if (subBtn) {
         subBtn.addEventListener('click', function(event) {
-            event.preventDefault();
 
             let userEmail = document.getElementById('email').value;
             let userPhone = document.getElementById('number').value;
@@ -114,11 +114,8 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     }
 
-    function userData() {
+    function generateUserData() {
         let tableBody = document.getElementById('table-body');
-        if (!tableBody) {
-            return;
-        }
 
         tableBody.innerHTML = '';  
 
@@ -161,5 +158,5 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     }
 
-    userData();
+    generateUserData();
 });
